@@ -1,0 +1,72 @@
+<div class="container mt-1">
+    <div class="container border"  style="background-color: white;">
+        <div class="d-flex justify-content-center p-3">
+          <div>
+            <span class="text-align-center" style="font-family: cursive"><h4 style="color: rgb(183, 7, 92)" class="nameColor">WELCOME</h4></span>
+          </div>
+        </div>
+        <ng-container *ngIf="!isQuizCompleted">
+          <div class="d-flex justify-content-around py-3">
+            <div class="score">
+              <h5>{{ points }} Points</h5>
+            </div>
+            <div class="question-remain">
+              <span style="font-style: italic">Question {{ currentQuestion + 1 }} of {{ questionList.length }}</span>
+            </div>
+            <div class="timer">
+              <h5>{{ counter }} sec &#8986;</h5>
+            </div>
+          </div>
+          <div class="progress mb-3">
+            <div class="progress-bar progress-bar-striped bg-success"
+              role="progressbar"
+              [ngStyle]="{ width: progress + '%' }"
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
+          </div>
+          <div class="question">
+            <div class="card">
+              <h3> Q: {{ questionList[currentQuestion]?.questionText }}</h3>
+            </div>
+          </div>
+          <div class="options">
+            <ul *ngFor="let option of questionList[currentQuestion]?.options">
+              <li (click)="answer(currentQuestion + 1, option)" class="card">
+                <div>
+                  {{ option.text }}
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="d-flex justify-content-between">
+            <button class="btn" [disabled]="currentQuestion === 0" (click)="previousQuestion()" style="font-size: 10px;">
+              <i class="fa-solid fa-chevron-left fa-3x fa text-primary" aria-hidden="true"></i>
+            </button>
+            <button class="btn" (click)="resetQuiz()" style="font-size: 10px;">
+              <i class="fa-solid fa fa-refresh fa text-primary fa-3x" area-hidden="true"></i>
+              <p style="font-size: 1.25em;">Reset</p>
+            </button>
+            <button class="btn" [disabled]="currentQuestion === 8" (click)="nextQuestion()" style="font-size: 10px;">
+              <i class="fa-solid fa-chevron-right fa-3x fa text-primary" aria-hidden="true"></i>
+            </button>
+          </div>
+        </ng-container>
+        
+        <ng-container *ngIf="isQuizCompleted">
+          <div class="row d-flex justify-content-center">
+            <div class="result text-center col-md-6 col-sm-12">
+              <h3>
+                Congratulations!!!!!<br />You have completed the quiz.....
+                <br />Below is your result:
+              </h3>
+              <p>Total question Attempted : {{ questionList.length }}</p>
+              <p>Total Correct Answered :{{ correctAnswer }}</p>
+              <p>Total Wrong Answered : {{ inCorrectAnswer }}</p>
+              <p>Your Score : {{ points }} points</p>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+</div>

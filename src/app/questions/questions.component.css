@@ -1,0 +1,38 @@
+.card{
+    max-width:800px;
+    margin:0.5em auto;
+    padding:10px;
+}
+.options{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+li{
+    list-style-type:none;
+    cursor:pointer;
+    margin:10px 10px;
+
+}
+li.card:hover{
+ border:1px solid rgb(99, 136, 51);
+ background-color: lightcyan;
+}
+ul{
+    width: 100%;
+    padding:0;
+    margin: 0;
+}
+.nameColor{
+    width: 100%;
+    padding:10px;
+    color:rgb(24, 15, 1);
+    background-color: rgb(195, 241, 195);
+    border-radius:5px;
+}
+.nameColor:hover{
+    color:black;
+    background-color: rgb(250, 231, 207);
+
+}
